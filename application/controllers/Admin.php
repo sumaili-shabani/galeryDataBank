@@ -1426,6 +1426,41 @@ class admin extends CI_Controller
 	  }
 	  // fin des scripts paiement 
 
+    function infomation_par_mail_delai_contrat()
+     {
+        if($this->input->post('checkbox_value'))
+        {
+           $id = $this->input->post('checkbox_value');
+           for($count = 0; $count < count($id); $count++)
+           {
+               
+                $mail    = $id[$count];
+                $website = "databankdrc@gmail.com";
+
+                $to =$id[$count];
+                $subject = "DATABANK DRC INFORMATION PERSONNELE";
+                $message2 = $this->input->post('message');
+                 
+
+                $headers= "MIME Version 1.0\r\n";
+                $headers .= "Content-type: text/html; charset=UTF-8\r\n";
+                $headers .= "From: no-reply@databankdrc.com" . "\r\n" ."Reply-to: sumailiroger681@gmail.com"."\r\n"."X-Mailer: PHP/".phpversion();
+
+                mail($to,$subject,$message2,$headers);
+
+           }
+
+           if(mail($to,$subject,$message2,$headers) > 0){
+                echo("message envoyé avec succès");
+           } 
+           else {
+                echo("Problème de connexion veillez  patienter!!!!!!!!!!!!");
+           }
+
+
+        }
+     }
+
 
 
 
