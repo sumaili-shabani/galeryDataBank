@@ -22,8 +22,17 @@
 <!-- sweetalert -->
 <script type="text/javascript" src="<?= base_url('js/sweetalert/sweetalert.js')?>"></script>
 
-<!-- Javascript -->
-<script src="<?= base_url('js/plugins/bundles/fullcalendarscripts.bundle.js')?>"></script><!--/ calender javascripts -->
+<!-- script calendrier -->
+<script src="<?= base_url('js/assets/bundles/fullcalendarscripts.bundle.js')?>"></script>
+<!--/ calender javascripts -->
+<!-- fin -->
+<script src="<?= base_url('js/plugins/summernote/summernote-bs4.min.js')?>"></script>
+<script>
+  $(function () {
+    // Summernote
+    $('.textarea').summernote();
+  })
+</script>
 
 <script type="text/javascript">
     $(document).ready(function(){

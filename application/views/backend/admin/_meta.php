@@ -24,6 +24,9 @@
 <link rel="stylesheet" type="text/css" href="<?= base_url('js/assets/font-awesome/css/font-awesome.css')?>">
 <!-- sweetalert -->
 <link rel="stylesheet" type="text/css" href="<?= base_url('js/sweetalert/sweetalert.css')?>">
+<link rel="stylesheet" href="<?= base_url('js/assets/summernote/summernote-bs4.css')?>">
+
+<link rel="stylesheet" href="<?= base_url('js/assets/fullcalendar/fullcalendar.min.css')?>">
 
 <style>  
      body  

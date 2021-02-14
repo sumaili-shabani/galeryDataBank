@@ -128,6 +128,14 @@ class admin extends CI_Controller
 		$this->load->view('backend/admin/location', $data);		
 	}
 
+  function evaluation(){
+    $data['title']="Paramétrage  des évaluation des contrats de location";
+    $data['galeries']   = $this->crud_model->Select_galeries();
+    $data['chambres']   = $this->crud_model->Select_chambres();
+    $data['clients']    = $this->crud_model->Select_clients();
+    $this->load->view('backend/admin/evaluation', $data);   
+  }
+
   function fetch_chambre_reference_galerie(){
     if($this->input->post('idg'))
     {
