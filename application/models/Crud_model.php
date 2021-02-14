@@ -179,7 +179,7 @@ class crud_model extends CI_Model{
 
   }
 
-   function show_galery_expire()
+  function show_galery_expire()
   {   
       $date_jour = date('Y-m-d');
       $request = $this->db->query("SELECT * FROM profile_location WHERE date_fin <='".$date_jour."' ");
@@ -234,6 +234,8 @@ class crud_model extends CI_Model{
 
       
   }
+
+  
 
 
   function Select_clients()

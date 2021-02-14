@@ -59,15 +59,126 @@
 					                                        <th width="20%">Nom du client</th>
 					                                        <th width="10%">Montant</th> 
 
-					                                        <th width="10%">Date debit contrat</th> 
-					                                        <th width="10%">Date fin contrat</th> 
+					                                        <th width="20%">Date debit contrat</th> 
+					                                        <th width="20%">Date fin contrat</th> 
 
 					                                        <th width="10%">Etat de la chambre</th> 
-					                                        <th width="20%">Mise à jour</th>
 					                                         
 					                                         
 					                                    </tr>  
-					                               </thead> 
+					                               </thead>
+
+					                               <tbody>
+					                               	<?php 
+					                               	  $date_jour = date('Y-m-d');
+												      $request = $this->db->query("SELECT * FROM profile_paiement WHERE date_fin <='".$date_jour."' ");
+												      if ($request->num_rows() > 0) {
+												          
+												          foreach ($request->result_array() as $key) {
+												            $nom_chambre = $key['nom'];
+												            $nom_client  = $key['fullname'];
+												            $date_fin    = $key['date_fin'];
+												            $date_debit    = $key['date_debit'];
+												            $date_expire_format = nl2br(substr(date(DATE_RFC822, strtotime($key['date_fin'])), 0, 23));
+
+												            $idchambre   = $key['idchambre'];
+
+												      //       $json[] = array(
+														    //     'title'      => $nom_chambre,
+														    //     'start'      => $date_debit,
+														    //     'end'        => $date_fin,
+														    //     'className'  => 'bg-primary' 
+														    // );
+
+														    $json[] = array(
+														        'title'      => $nom_chambre,
+														        'start'      => '2020-02-10',
+														        'end'        => '2020-02-13',
+														        'className'  => 'bg-primary' 
+														    );
+
+
+
+												            if ($key['etat'] == 0) {
+												             	$etat ='<span class="badge badge-info">innocupée</span>';
+												            }
+												            else{
+												            	$etat ='<span class="badge badge-success">occupée</span>';
+												            } 
+
+												              if ($idchambre !='') {
+												          
+												                $updated_data = array(  
+												                    'etat'   =>     0
+												                );
+
+												                $this->crud_model->update_chambre($idchambre, $updated_data);
+												              }
+
+												              $users_cool = $this->crud_model->get_info_user();
+												              foreach ($users_cool as $key2) {
+
+												                  if ($key2['idrole'] == 1) {
+													                    $url ="admin/location";
+
+													                    $id_user_recever = $key2['id'];
+
+													                    $message = $nom_chambre." a expiré ".$date_fin;
+
+													                    $notification = array(
+													                      'titre'     =>    "Expiration du contrat",
+													                      'icone'     =>    "fa fa-bell",
+													                      'message'   =>     $message,
+													                      'url'       =>     $url,
+													                      'id_user'   =>     $id_user_recever
+													                    );
+													                    
+													                   $not = $this->crud_model->insert_notification($notification);
+
+												                  }
+
+												                  ?>
+												                  <tr>
+												                  	<td>
+												                  		<input type="checkbox" name="check_tel" id="checktel" class="checktel" value="<?= $key['idchambre']; ?>">&nbsp;&nbsp;&nbsp;
+												                  		<?php echo($key['nom']); ?>
+												                  	</td>
+												                  	<td><?php echo($key['fullname']); ?></td>
+												                  	<td><?php echo($key['montant']); ?></td>
+												                  	<td>
+												                  		<?php echo(nl2br(substr(date(DATE_RFC822, strtotime($key['date_debit'])), 0, 23))) ?>
+												                  	</td>
+												                  	<td>
+												                  		<?php echo(nl2br(substr(date(DATE_RFC822, strtotime($key['date_fin'])), 0, 23))) ?>
+												                  	</td>
+												                  	<td>
+												                  		<?php echo($etat); ?>
+												                  	</td>
+												                  	
+												                  </tr>
+												                  <?php
+												                  
+												                    # code...
+												              }
+
+												          }
+												      }
+												      else{
+
+												      	$json[] = array(
+													        'title'      => '',
+													        'start'      => '',
+													        'end'        => '',
+													        'className'  => 'bg-info' 
+													    );
+
+
+												      }
+
+
+
+					                               	 ?>
+					                               </tbody> 
 
 					                               <tfoot>  
 					                                    <tr>  
@@ -75,11 +186,11 @@
 					                                        <th width="20%">Nom du client</th>
 					                                        <th width="10%">Montant</th> 
 
-					                                        <th width="10%">Date debit contrat</th> 
-					                                        <th width="10%">Date fin contrat</th> 
+					                                        <th width="20%">Date debit contrat</th> 
+					                                        <th width="20%">Date fin contrat</th> 
 
 					                                        <th width="10%">Etat de la chambre</th> 
-					                                        <th width="20%">Mise à jour</th>
+					                                        
 					                                         
 					                                        
 					                                    </tr>  
@@ -231,16 +342,7 @@
     </div>
     <!-- fin modal-->
 
-    <?php 
-
-    $json[] = array(
-        'title'      => '',
-        'start'      => '',
-        'end'        => '',
-        'className'  => 'bg-info' 
-    );
-
-    ?>
+   
 
     <script type="text/javascript">
          $(document).ready(function(){
