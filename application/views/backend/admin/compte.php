@@ -73,28 +73,33 @@
                         <div class="col-md-12">
                             <div class="row">
 
+                              <div class="form-group col-md-12">
+                                <label><i class="fa fa-university"></i>&nbsp; Nom  de la galerie</label>  
+                                <select name="galerie_ok" id="galerie_ok" class="form-control selectpicker" data-live-search="true">
+                                  <option value="">Selectionez la galerie</option>
+                                  <?php
+                                    if ($galeries->num_rows() > 0) {
+                                     foreach ($galeries->result_array() as $key) {
+                                        ?>
+                                         <option value="<?php echo($key['idg']) ?>"><?php echo($key['adresse']) ?></option>
+                                         <?php
+                                     }
+                                    }
+                                    else{
+                                      ?>
+                                      <option value="">aucune galerie  n'est disponible</option>
+                                      <?php
+                                    }
+                                  ?>
+                                  
+                                </select>
+                              </div>
+
                                <div class="form-group col-md-12">
                                   <label><i class="fa fa-user"></i> Nom de location</label>
                                      <select  name="Hommes" id="Hommes" class="form-control selectpicker" data-live-search="true">
-                                      <?php 
-                                      if ($locations->num_rows() > 0) {
-                                        ?>
-                                        <option value="">Selectionnez le nom de location</option>
-                                        <?php
-                                        foreach ($locations->result_array() as $key) {
-                                          ?>
-                                          <option value="<?php echo($key['idl']) ?>">
-                                            <?php echo($key['nom'].' - '.$key['fullname']) ?></option>
-                                          <?php
-                                        }
-                                      }
-                                      else{
-
-                                        ?>
-                                        <option value="">Aucune location n'est diponible</option>
-                                        <?php
-                                      }
-                                      ?>
+                                      <option value="">Selectionez la chambre à louer</option>
+                                      <!--  -->
                                       
                                      </select> 
                               </div>
@@ -423,6 +428,30 @@
             }
 
           }
+
+          $(document).on('change', '#galerie_ok', function(){
+      
+              var idg = $(this).val();
+              if(idg != '')
+              {
+                // alert(idg);
+                 $.ajax({
+                    url:"<?php echo base_url(); ?>admin/fetch_chambre_reference_location",
+                    method:"POST",
+                    data:{idg:idg},
+                    success:function(data)
+                    {
+                     $('#Hommes').html(data);
+                    }
+                 });
+              }
+              else
+              {
+                 $('#Hommes').html('<option value="">Selectionner la chambre à louer</option>');
+                 swal("Ouf!!!", "Veillez complèter la galerie 😰", "error");
+              }
+              // alert(idv);
+          });
 
 
 

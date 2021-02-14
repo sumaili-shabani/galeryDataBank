@@ -124,24 +124,33 @@
 
                     	<form method="post" id="user_form" enctype="multipart/form-data" class="col-md-12 row">
 
+                        <div class="form-group col-md-12">
+                          <label><i class="fa fa-university"></i>&nbsp; Nom  de la galerie</label>  
+                          <select name="galerie_ok" id="galerie_ok" class="form-control selectpicker" data-live-search="true">
+                            <option value="">Selectionez la galerie</option>
+                            <?php
+                              if ($galeries->num_rows() > 0) {
+                               foreach ($galeries->result_array() as $key) {
+                                  ?>
+                                   <option value="<?php echo($key['idg']) ?>"><?php echo($key['adresse']) ?></option>
+                                   <?php
+                               }
+                              }
+                              else{
+                                ?>
+                                <option value="">aucune galerie  n'est disponible</option>
+                                <?php
+                              }
+                            ?>
+                            
+                          </select>
+                        </div>
+
                     		<div class="form-group col-md-6">
                               <label><i class="fa fa-home"></i>&nbsp; Nom  de la chambre</label>  
                               <select name="chambre_ok" id="chambre_ok" class="form-control selectpicker" data-live-search="true">
                                 <option value="">Selectionez la chambre</option>
-                                <?php
-                                  if ($chambres->num_rows() > 0) {
-                                   foreach ($chambres->result_array() as $key) {
-                                    	?>
-                                       <option value="<?php echo($key['idchambre']) ?>"><?php echo($key['nom']) ?></option>
-                                       <?php
-                                   }
-                                  }
-                                  else{
-                                    ?>
-                                    <option value="">aucune chambre  n'est disponible</option>
-                                    <?php
-                                  }
-                                ?>
+                                <!---->
                                 
                               </select>
                             </div>
@@ -404,6 +413,31 @@
                 swal("Ouf!!!", "Veillez complèter le client 😰", "error"); 
             }
         });
+
+        $(document).on('change', '#galerie_ok', function(){
+      
+            var idg = $(this).val();
+            if(idg != '')
+            {
+              // alert(idg);
+               $.ajax({
+                  url:"<?php echo base_url(); ?>admin/fetch_chambre_reference_galerie",
+                  method:"POST",
+                  data:{idg:idg},
+                  success:function(data)
+                  {
+                   $('#chambre_ok').html(data);
+                  }
+               });
+            }
+            else
+            {
+               $('#chambre_ok').html('<option value="">Selectionner la chambre</option>');
+               swal("Ouf!!!", "Veillez complèter la galerie 😰", "error");
+            }
+            // alert(idv);
+        });
+
 
           
 

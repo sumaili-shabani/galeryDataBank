@@ -122,10 +122,25 @@ class admin extends CI_Controller
 
 	function location(){
 		$data['title']="Paramétrage  des locations";
+    $data['galeries']   = $this->crud_model->Select_galeries();
 		$data['chambres']  	= $this->crud_model->Select_chambres();
 		$data['clients']  	= $this->crud_model->Select_clients();
 		$this->load->view('backend/admin/location', $data);		
 	}
+
+  function fetch_chambre_reference_galerie(){
+    if($this->input->post('idg'))
+    {
+      echo $this->crud_model->fetch_chambre_by_galerie($this->input->post('idg'));
+    }
+  }
+
+  function fetch_chambre_reference_location(){
+    if($this->input->post('idg'))
+    {
+      echo $this->crud_model->fetch_chambre_by_galerie_location($this->input->post('idg'));
+    }
+  }
 
 	// script pour la sauvegarge de données 
     function database($param1 = '', $param2 = '')
@@ -157,6 +172,7 @@ class admin extends CI_Controller
 
 	function compte(){
 		$data['title']="Paramétrage  des clients";
+    $data['galeries']   = $this->crud_model->Select_galeries();
 		$data['chambres']  	= $this->crud_model->Select_chambres();
 		$data['locations']  	= $this->crud_model->Select_locations();
 

@@ -91,7 +91,10 @@
 							<button type="submit" class="btn btn-primary btn-sm"><i class="fa fa-send"></i> Envoyer</button>
 						</div>
 
+
+
 					</form>
+					<hr>
 				</div>
 				
 			</div>
@@ -156,6 +159,7 @@
         <!-- fin  -->
 		
 	</div>
+
 	
 
 </div>

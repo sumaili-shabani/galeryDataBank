@@ -1062,6 +1062,39 @@ class crud_model extends CI_Model{
       }
       // fin script pour information sur le paiement
 
+      // le script pour le chargement des chambres
+      function fetch_chambre_by_galerie($idg)
+       {
+
+        $this->db->order_by('nom', 'ASC');
+        $query = $this->db->get_where('chambre', array(
+          'etat'  =>  0,
+          'idg'   =>  $idg
+        ));
+        $output = '<option value="">Selectionner la chambre</option>';
+        foreach($query->result() as $row)
+        {
+         $output .= '<option value="'.$row->idchambre.'">'.$row->nom.'</option>';
+        }
+        return $output;
+       }
+
+       function fetch_chambre_by_galerie_location($idg)
+       {
+
+        $this->db->order_by('nom', 'ASC');
+        $query = $this->db->get_where('profile_location', array(
+          'etat'  =>  0,
+          'idg'   =>  $idg
+        ));
+        $output = '<option value="">Selectionner la chambre à louer </option>';
+        foreach($query->result() as $row)
+        {
+         $output .= '<option value="'.$row->idl.'">'.$row->nom.' - '.$row->fullname.'</option>';
+        }
+        return $output;
+       }
+
 
 
 
@@ -1072,7 +1105,7 @@ class crud_model extends CI_Model{
 
 
     function fetch_single_details_formations_filtre($ide)
-     {
+    {
 
       
       $data = $this->db->query("SELECT * FROM profile_galerie WHERE ide=".$ide." ");
@@ -1168,18 +1201,18 @@ class crud_model extends CI_Model{
 
       
         return $output;
-      }
+    }
 
-      function fetch_all_paiements($dates1, $dates2)
-      {
+    function fetch_all_paiements($dates1, $dates2)
+    {
 
-            return $this->db->query("SELECT * FROM profile_paiement WHERE date_paie BETWEEN '".$dates1."' 
-              AND '".$dates2."' LIMIT 40");
-      }
+          return $this->db->query("SELECT * FROM profile_paiement WHERE date_paie BETWEEN '".$dates1."' 
+            AND '".$dates2."' LIMIT 40");
+    }
 
       // impression paiement de galerie
-      function fetch_single_details_comptabilite_system($idp)
-      {
+    function fetch_single_details_comptabilite_system($idp)
+    {
 
         $this->db->where('idp', $idp);
         $data = $this->db->get('profile_paiement');
@@ -1315,12 +1348,10 @@ class crud_model extends CI_Model{
 
       
         return $output;
-      }
-
+    }
       // fin de script 
-
-      function fetch_single_details_comptabilite_filtre_paiement($dates1, $dates2)
-     {
+    function fetch_single_details_comptabilite_filtre_paiement($dates1, $dates2)
+    {
 
       
       $data = $this->db->query("SELECT * FROM profile_paiement WHERE date_paie BETWEEN '".$dates1."' AND '".$dates2."' ");
@@ -1439,7 +1470,9 @@ class crud_model extends CI_Model{
 
       
         return $output;
-      }
+    }
+
+
 
 
 
@@ -1456,74 +1489,74 @@ class crud_model extends CI_Model{
 // validation
   function can_login($email, $password_ok)
   {
-    $this->db->where('email', $email);
-    $query = $this->db->get('users');
-    if($query->num_rows() > 0)
-    {
-     foreach($query->result() as $row)
-     {
-        if($row->idrole == '1')
-        {
+      $this->db->where('email', $email);
+      $query = $this->db->get('users');
+      if($query->num_rows() > 0)
+      {
+       foreach($query->result() as $row)
+       {
+          if($row->idrole == '1')
+          {
 
-           $password = md5($password_ok);
-           $store_password = $row->passwords;
-           if($password == $store_password)
-           {
-            $this->session->set_userdata('admin_login', $row->id);
-           }
-           else
-           {
-            return 'mot de passe incorrect';
-           }
-
-        }
-        elseif($row->idrole == '2')
-        {
-           $password = md5($password_ok);
-           $store_password = $row->passwords;
-           if($password == $store_password)
-           {
-            $this->session->set_userdata('id', $row->id);
-           }
-           else
-           {
-            return 'mot de passe incorrect';
-           }
-
-        }
-        elseif($row->idrole == '3')
-        {
-           $password = md5($password_ok);
-           $store_password = $row->passwords;
-           if($password == $store_password)
-           {
-            $this->session->set_userdata('instuctor_login', $row->id);
-           }
-           else
-           {
-            return 'mot de passe incorrect';
-           }
+             $password = md5($password_ok);
+             $store_password = $row->passwords;
+             if($password == $store_password)
+             {
+              $this->session->set_userdata('admin_login', $row->id);
+             }
+             else
+             {
+              return 'mot de passe incorrect';
+             }
 
           }
-        else
-        {
-         return 'les informations incorrectes';
-        }
-        
+          elseif($row->idrole == '2')
+          {
+             $password = md5($password_ok);
+             $store_password = $row->passwords;
+             if($password == $store_password)
+             {
+              $this->session->set_userdata('id', $row->id);
+             }
+             else
+             {
+              return 'mot de passe incorrect';
+             }
+
+          }
+          elseif($row->idrole == '3')
+          {
+             $password = md5($password_ok);
+             $store_password = $row->passwords;
+             if($password == $store_password)
+             {
+              $this->session->set_userdata('instuctor_login', $row->id);
+             }
+             else
+             {
+              return 'mot de passe incorrect';
+             }
+
+            }
+          else
+          {
+           return 'les informations incorrectes';
+          }
+          
 
 
 
-     }
-    }
-    else
-    {
-     return 'adresse email incorrecte';
-    }
+       }
+      }
+      else
+      {
+       return 'adresse email incorrecte';
+      }
     
   }
 
 
-    function can_recuperation($email)
+  function can_recuperation($email)
     {
         $this->db->where('email', $email);
         $query = $this->db->get('users');
@@ -1614,6 +1647,6 @@ class crud_model extends CI_Model{
 
     }
 
-}
+  }
 
 ?>
