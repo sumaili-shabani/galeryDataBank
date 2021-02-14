@@ -22,7 +22,7 @@
 
             <!-- Heading -->
             <div class="sidebar-heading">
-                Interface
+                Interfaces
             </div>
 
             <!-- Nav Item - Pages Collapse Menu -->
@@ -30,20 +30,20 @@
                 <a class="nav-link collapsed" href="javascript:void(0);" data-toggle="collapse" data-target="#collapseTwo"
                     aria-expanded="true" aria-controls="collapseTwo">
                     <i class="fas fa-fw fa-cog"></i>
-                    <span>Components</span>
+                    <span>Composants</span>
                 </a>
                 <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Applications:</h6>
+                        <a class="collapse-item" href="<?php echo(base_url()) ?>admin/entreprise">Entreprise</a>
+                        <a class="collapse-item" href="<?php echo(base_url()) ?>admin/galerie">Galerie</a>
                         <a class="collapse-item" href="<?php echo(base_url()) ?>admin/type">Type</a>
                         <a class="collapse-item" href="<?php echo(base_url()) ?>admin/chambre">Chambre</a>
-                        <a class="collapse-item" href="<?php echo(base_url()) ?>admin/galerie">Galerie</a>
-                        <a class="collapse-item" href="<?php echo(base_url()) ?>admin/entreprise">Entreprise</a>
                         <a class="collapse-item" href="<?php echo(base_url()) ?>admin/client">Client</a>
 
                         <div class="dropdown-divider"></div>
                         <a class="collapse-item" href="<?php echo(base_url()) ?>admin/stat_filtrage_galerie_ap">Liste des Galeries</a>
-                        <a class="collapse-item" href="<?php echo(base_url()) ?>admin/database">Sauvegarde des données</a>
+                        
                     </div>
                 </div>
             </li>
@@ -61,11 +61,9 @@
                         <h6 class="collapse-header">Nos opérations:</h6>
 
                         <a class="collapse-item" href="<?php echo(base_url()) ?>admin/location">Locaton</a>
-                        <a class="collapse-item" href="<?php echo(base_url()) ?>admin/poste">Poste</a>
-                        <a class="collapse-item" href="<?php echo(base_url()) ?>admin/role">Fonction</a>
 
-                        <a class="collapse-item" href="<?php echo(base_url()) ?>admin/users">Utilisateur</a>
-                        <a class="collapse-item" href="<?php echo(base_url()) ?>admin/stat_users">Stat sur Utilisateur</a>
+                         <a class="collapse-item" href="<?php echo(base_url()) ?>admin/evaluation">Evaluation des jours</a>
+                        
 
                     </div>
                 </div>
@@ -94,6 +92,36 @@
                         <h6 class="collapse-header">Paiement galerie:</h6>
                         <a class="collapse-item" href="<?php echo(base_url()) ?>admin/compte">Nos paiements</a>
                         <a class="collapse-item" href="<?php echo(base_url()) ?>admin/stat_paiement">Statistique sur paiement</a>
+                       
+                    </div>
+                </div>
+            </li>
+
+            <!-- Heading -->
+            <div class="sidebar-heading">
+                paramètrage de système
+            </div>
+
+            <!-- Nav Item - Charts -->
+             <li class="nav-item">
+                <a class="nav-link collapsed" href="javascript:void(0);" data-toggle="collapse" data-target="#collapseUtilities3"
+                    aria-expanded="true" aria-controls="collapseUtilities3">
+                    <i class="fas fa-fw fa-cogs"></i>
+                    <span>Paramètre</span>
+                </a>
+                <div id="collapseUtilities3" class="collapse" aria-labelledby="headingUtilities"
+                    data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <h6 class="collapse-header">Nos paramètres:</h6>
+                        <a class="collapse-item" href="<?php echo(base_url()) ?>admin/poste">Poste</a>
+                        <a class="collapse-item" href="<?php echo(base_url()) ?>admin/role">Fonction</a>
+
+                        <a class="collapse-item" href="<?php echo(base_url()) ?>admin/users">Utilisateur</a>
+                        <a class="collapse-item" href="<?php echo(base_url()) ?>admin/stat_users">Stat sur Utilisateur</a>
+
+                        <div class="dropdown-divider"></div>
+
+                        <a class="collapse-item" href="<?php echo(base_url()) ?>admin/database">Sauvegarde des données</a>
                        
                     </div>
                 </div>
