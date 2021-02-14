@@ -14,7 +14,7 @@
             <li class="nav-item">
                 <a class="nav-link" href="<?php echo(base_url()) ?>admin/dashbord">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
-                    <span>Dashboard</span></a>
+                    <span>Tableau de bord</span></a>
             </li>
 
             <!-- Divider -->

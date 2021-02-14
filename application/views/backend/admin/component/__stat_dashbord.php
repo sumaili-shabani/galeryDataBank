@@ -18,7 +18,9 @@
                                 <div class="h5 mb-0 font-weight-bold text-gray-800"><?php echo($nombre_location); ?></div>
                             </div>
                             <div class="col-auto">
-                                <i class="fas fa-home fa-2x text-gray-300"></i>
+                                <a href="<?php echo(base_url()) ?>admin/location">
+                                    <i class="fas fa-home fa-2x text-gray-300"></i>
+                                </a>
                             </div>
                         </div>
                     </div>
@@ -36,7 +38,10 @@
                                 <div class="h5 mb-0 font-weight-bold text-gray-800"><?php echo($nombre_paiement); ?></div>
                             </div>
                             <div class="col-auto">
-                                <i class="fas fa-money fa-2x text-gray-300"></i>
+                                <a href="<?php echo(base_url()) ?>admin/compte">
+                                    
+                                    <i class="fas fa-dollar fa-2x text-gray-300"></i>
+                                </a>
                             </div>
                         </div>
                     </div>
@@ -63,7 +68,11 @@
                                 </div>
                             </div>
                             <div class="col-auto">
-                                <i class="fas fa-university fa-2x text-gray-300"></i>
+                                <a href="<?php echo(base_url()) ?>admin/chambre">
+                                    
+                                    <i class="fas fa-university fa-2x text-gray-300"></i>
+                                </a>
+                                
                             </div>
                         </div>
                     </div>
@@ -81,7 +90,10 @@
                                 <div class="h5 mb-0 font-weight-bold text-gray-800"><?php echo($nombre_users); ?></div>
                             </div>
                             <div class="col-auto">
-                                <i class="fas fa-group fa-2x text-gray-300"></i>
+                                <a href="<?php echo(base_url()) ?>admin/users">
+                                    
+                                    <i class="fas fa-group fa-2x text-gray-300"></i>
+                                </a>
                             </div>
                         </div>
                     </div>
