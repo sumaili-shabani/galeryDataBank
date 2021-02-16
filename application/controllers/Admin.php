@@ -133,6 +133,7 @@ class admin extends CI_Controller
     $data['galeries']   = $this->crud_model->Select_galeries();
     $data['chambres']   = $this->crud_model->Select_chambres();
     $data['clients']    = $this->crud_model->Select_clients();
+     $this->crud_model->show_galery_expire();
     $this->load->view('backend/admin/evaluation', $data);   
   }
 
@@ -168,7 +169,7 @@ class admin extends CI_Controller
 
         }
 
-        $this->crud_model->show_galery_expire();
+       
 
         $data['title'] = "Sauvegarde et restauration de la base des données";
         $data['users'] = $this->crud_model->fetch_connected($this->connected);

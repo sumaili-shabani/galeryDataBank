@@ -21,7 +21,7 @@
                         <!-- Nested Row within Card Body -->
                         <div class="row">
                             <div class="col-lg-6 d-none d-lg-block bg-login-image">
-                            	 <img src="<?php echo(base_url()) ?>upload/annumation/logo.jpg" class="img-responsive img-fluid" style="margin-top: 150px; padding-left: 50px;">
+                            	 <!-- <img src="<?php echo(base_url()) ?>upload/annumation/logo.jpg" class="img-responsive img-fluid" style="margin-top: 150px; padding-left: 50px;"> -->
                             </div>
                             <div class="col-lg-6">
                                 <div class="p-5">
