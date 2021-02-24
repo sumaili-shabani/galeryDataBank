@@ -128,7 +128,7 @@
                              <th width="15%">Date de paiement</th>
                              <th width="15%">Mise àjour</th>
                              
-                             <th width="5%">Editer</th> 
+                             <th width="5%">Opération</th> 
 
                              <!-- <th width="5%">Supprimer</th>   --> 
                         </tr>  
@@ -147,7 +147,7 @@
                              <th width="15%">Date de paiement</th>
                              <th width="15%">Mise àjour</th>
                              
-                             <th width="5%">Editer</th> 
+                             <th width="5%">Opération</th> 
 
                              <!-- <th width="5%">Supprimer</th>   --> 
                         </tr>  

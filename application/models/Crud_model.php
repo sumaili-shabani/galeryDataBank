@@ -57,9 +57,9 @@ class crud_model extends CI_Model{
 
   // opertion paie
   var $table10 = "profile_paiement";  
-  var $select_column10 = array("idp", "montant","motif","idl","date_paie",
+  var $select_column10 = array("idp", "idchambre","etat_paie","montant","motif","idl","date_paie",
     "fullname","nom","tel","created_at");  
-  var $order_column10 = array(null, "montant","motif","idl","date_paie",
+  var $order_column10 = array(null, "idchambre","etat_paie","montant","motif","idl","date_paie",
     "fullname","nom","tel","created_at",null, null);
   // fin de la paie
 

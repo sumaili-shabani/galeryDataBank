@@ -172,11 +172,32 @@
 	                   						
 	                   				</td>
 
+	                   				<?php 
+
+	                   				if ($key['etat_paie'] == 0) {
+	                   					?>
+	                   					<td>
+		                   					<a href="javascript:void(0);" class="btn btn-danger btn-sm btn-circle delete" idchambre="<?php echo($key['idchambre']) ?>"  idp="<?php echo($key['idp']) ?>"><i class="fa fa-trash"></i></a>
+		                   				</td>
+	                   					<?php
+	                   				}
+	                   				else{
+	                   					
+	                   					?>
+	                   					<td>
+		                   					<a href="javascript:void(0);" class="btn btn-success  btn-sm btn-circle"  idp="<?php echo($key['idp']) ?>"><i class="fa fa-check"></i></a>
+		                   				</td>
+	                   					<?php
+
+	                   				}
+
+
+
+	                   				 ?>
+
 	                   				
 
-	                   				<td>
-	                   					<a href="javascript:void(0);" class="btn btn-warning update btn-sm btn-circle"  idp="<?php echo($key['idp']) ?>"><i class="fa fa-edit"></i></a>
-	                   				</td>
+	                   				
 	                   				
 
 

@@ -118,17 +118,8 @@
 
                     	<form method="post" id="user_form" enctype="multipart/form-data" class="col-md-12 row">
                     		
-                    		<div class="col-md-12">
-                    			<label><i class="fa fa-home"></i> Nom de la chambre</label>
-                    			<input type="text" name="nom" id="nom" class="form-control" placeholder="Entrez le nom de la chambre" />
-                    		</div>
-
-                    		<div class="form-group col-md-12">
-                              <label><i class="fa fa-money"></i>Saisissez le montant à payer en $</label>  
-                                  <input type="number" min="1" name="montant" id="montant" class="form-control" placeholder="Saisissez le montant">
-                            </div>
-
-                            <div class="form-group col-md-6">
+                    		
+                            <div class="form-group col-md-12">
                               <label><i class="fa fa-tag"></i> Galerie</label>  
                               <select name="galerie_ok" id="galerie_ok" class="form-control selectpicker" data-live-search="true">
                                 <option value="">Selectionnez sa galerie</option>
@@ -150,14 +141,19 @@
                               </select>
                             </div>
 
-                            <div class="form-group col-md-6">
+                            <div class="col-md-12">
+                                <label><i class="fa fa-home"></i> Nom de la chambre</label>
+                                <input type="text" name="nom" id="nom" class="form-control" placeholder="Entrez le nom de la chambre" />
+                            </div>
+
+                            <div class="form-group col-md-12">
                               <label><i class="fa fa-glass"></i> Type de la chambre</label>  
                               <select name="type_ok" id="type_ok" class="form-control selectpicker" data-live-search="true">
                                 <option value="">Selectionez son type</option>
                                 <?php
                                   if ($types->num_rows() > 0) {
                                    foreach ($types->result_array() as $key) {
-                                    	?>
+                                        ?>
                                        <option value="<?php echo($key['idtype']) ?>"><?php echo($key['designation']) ?></option>
                                        <?php
                                    }
@@ -172,6 +168,13 @@
                               </select>
                             </div>
 
+
+                            <div class="form-group col-md-12">
+                              <label><i class="fa fa-money"></i>Saisissez le montant à payer en $</label>  
+                                  <input type="number" min="1" name="montant" id="montant" class="form-control" placeholder="Saisissez le montant">
+                            </div>
+
+                            
                             
 
                             <div class="form-group col-md-12 text-center">

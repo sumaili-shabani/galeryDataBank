@@ -336,20 +336,24 @@
 
           $(document).on('click', '.delete', function(){
               var idp = $(this).attr("idp");
+               var idchambre = $(this).attr("idchambre");
 
-              if(confirm("Etes-vous sûre de vouloire le supprimer?"))
+            if(confirm("Etes-vous sûre de vouloire le supprimer?"))
             {
               
                 $.ajax({
-                      url:"<?php echo base_url(); ?>admin/supression_paiement",
-                      method:"POST",
-                      data:{idp:idp},
-                      success:function(data)
-                      {
-                         swal("succès!", ''+data, "success");
-                         dataTable.ajax.reload();
-                      }
-                    });
+                  url:"<?php echo base_url(); ?>admin/supression_paiement",
+                  method:"POST",
+                  data:{
+                    idp:idp,
+                    idchambre: idchambre
+                  },
+                  success:function(data)
+                  {
+                     swal("succès!", ''+data, "success");
+                     dataTable.ajax.reload();
+                  }
+                });
             }
             else
             {

@@ -197,6 +197,15 @@ class admin extends CI_Controller
 
 	function impression_pdf_paiemant_list($param1=''){
        $customer_id = "paiement facture ".$param1;
+
+        if ($param1 != '') {
+
+          $updated_data = array(  
+               'etat_paie'     =>     1
+          ); 
+          $this->crud_model->update_paiement($param1, $updated_data);
+        }
+
        $html_content = '';
        $html_content .= $this->crud_model->fetch_single_details_comptabilite_system($param1);
 
@@ -1278,9 +1287,9 @@ class admin extends CI_Controller
   		$idchambre = $this->input->post('idchambre');
   		if ($idchambre !='') {
   			
-  			$updated_data = array(  
-	           'etat'   =>     0
-			);
+    			$updated_data = array(  
+    	           'etat'   =>     0
+    			);
 
 		    $this->crud_model->update_chambre($idchambre, $updated_data);
   		}
@@ -1297,9 +1306,20 @@ class admin extends CI_Controller
 
 	       $fetch_data = $this->crud_model->make_datatables_paiement();  
 	       $data = array();  
+         $etat ='';
 	       foreach($fetch_data as $row)  
 	       {  
 	            $sub_array = array(); 
+
+              if ($row->etat_paie == 0) {
+                $etat = '<button type="button" name="delete" idp="'.$row->idp.'" idchambre="'.$row->idchambre.'" class="btn btn-circle btn-danger btn-sm delete"><i class="fa fa-trash"></i></button>'; 
+               
+              }
+              else{
+
+                  
+                   $etat = '<button type="button" name="delete" idp="'.$row->idp.'" class="btn btn-circle btn-success btn-sm"><i class="fa fa-check"></i></button>'; 
+              }
 
 	            $sub_array[] = '<a href="'.base_url().'admin/impression_pdf_paiemant_list/'.$row->idp.'" name="update" id="'.$row->idp.'" class="btn btn-circle btn-primary btn-sm print"><i class="fa fa-print"></i></a>';
 	            
@@ -1317,8 +1337,8 @@ class admin extends CI_Controller
 	            $sub_array[] = nl2br(substr(date(DATE_RFC822, strtotime($row->created_at)), 0, 23));
 	            
 
-	            $sub_array[] = '<button type="button" name="update" idp="'.$row->idp.'" class="btn btn-circle btn-primary btn-sm update"><i class="fa fa-edit"></i></button>';  
-	            // $sub_array[] = '<button type="button" name="delete" idp="'.$row->idp.'" class="btn btn-danger btn-xs delete"><i class="fa fa-trash"></i></button>';  
+	            $sub_array[] = $etat;  
+	             // $sub_array[] = '<button type="button" name="delete" idp="'.$row->idp.'" class="btn btn-danger btn-xs delete"><i class="fa fa-trash"></i></button>';  
 	            $data[] = $sub_array;  
 	       }  
 	       $output = array(  
@@ -1421,6 +1441,16 @@ class admin extends CI_Controller
 	  }
 
 	  function supression_paiement(){ 
+        $idchambre = $this->input->post('idchambre');
+        if ($idchambre !='') {
+          
+            $updated_data = array(  
+                   'etat'   =>     0
+            );
+
+          $this->crud_model->update_chambre($idchambre, $updated_data);
+        }
+        
 	      $this->crud_model->delete_paiement($this->input->post("idp"));
 	      echo("suppression avec succès");
 	    
